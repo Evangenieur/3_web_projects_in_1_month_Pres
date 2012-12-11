@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>How to build 3 web projects in 1 month</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+<section>
+    <h1>how to build&nbsp;</h1>
+    <h1>3 WEB projects&nbsp;</h1>
+    <h1>in 1 month</h1>
+    <p>by <a href="http://twitter.com/evangenieur">@Evangenieur</a>
+</p>
+</section>
+<section>
+    <h2>TO BE PRODUCTIVE</h2>
+    <h2>Forget what you've learnED</h2>
+    <div>
+        <br>
+    </div>
+    <div>
+        <ul>
+            <li>Build complex system by analysis<br>
+                <br>
+            </li>
+            <li>Specifications -&gt; Implementation<br>
+                <br>
+            </li>
+            <li>Build stable and robust System</li>
+        </ul>
+    </div>
+    <div style="text-align: center;">
+        <br>
+    </div>
+    <div style="text-align: center;">
+        <b>This was systems design before the Web</b>
+    </div>
+</section>
+<section>
+    <h2>Web is METASTABLE</h2>
+    <div>like all&nbsp;living networks</div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <ul>
+            <li>Simple Architecture : URL / HTTP<br>
+                <br>
+            </li>
+            <li>Usage -&gt; Standardization<br>
+                <br>
+            </li>
+            <li>Non stop&nbsp;evolution / endless possibilites<br>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <br>
+        <b>So let your project be Web based</b>
+    </div>
+</section>
+<section>
+    <h2>Web PROJECT BASICS</h2>
+    <div>
+        <br>
+    </div>
+    <div>One job and some paradigms like Social / Real-Time</div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <br>Goal : Create Incoming and Outgoing Links<br>
+        <br>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div>Need : an URI Mapping</div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <b>That's it</b>
+    </div>
+</section>
+<section>
+    <h2>Be Agile, <br/>don't try to solve non problems<br>
+    </h2>
+        <div>
+            <ul>
+      <li>Structure<br/><small>You don't know in which way your project will evolve<br/>
+      So keep things small and efficient</small><br/><br/></li>
+        <li>Data storage / persistency <br><small>Iter from more flexible to less<br/>Memory -> JSON -> NoSQL -> SQL only if needed</small><br><br></li>
+        <li>Hosting<br/>
+            <small>Be able to move quickly from hosting solutions to another, use PaaS</small>
+        </li>
+
+    </div>
+</section>
+
+<section>
+    <h2>HOW TO BUILD THEM QUICKLY ?<br>
+        <br>
+    </h2>
+    <div>
+        <ul>
+            <li>What are the ressources of your website ?
+            <pre><code class="coffeescript">Users = [{username: "Evangenieur"}]</code></pre>
+                <br>
+            </li>
+            <li>What the URI mapping ?
+            <pre><code class="no-highlight">http://myproject.com/evangenieur</code></pre>
+                <br>
+            </li>
+            <li>How can I serve it ?
+            <pre><code class="coffeescript">
+@get "/:user": -&gt;
+  @send Users.filter (user) =&gt;
+    user.username.toLowerCase() is @params.user
+            </code></pre></li>
+        </ul>
+    </div>
+</section>
+<section>
+    <h2>MORE COMPLEX a Nano API Server<br>
+    </h2>
+    <div>
+      <pre><code class="coffeescript">## Data
+Users = [ {
+  uri_id: "evangenieur"
+  username: "Evangenieur"
+  channels: [
+    { 
+      uri_id: "my_channel"
+      name: "My Channel"
+      messages: []
+    } ] 
+  } 
+]
+## Data Traversal
+get_user = (user_uri_id) -> 
+  if user = Users.filter((user) -> user.uri_id is user_uri_id).pop()
+    user.get_channel = (channel_uri_id) ->
+      user.channels.filter((channel) => 
+          channel_uri_id is channel.uri_id
+        ).pop()
+    user
+## API
+require("zappajs") ->
+  @get "/:user/:channel": ->
+    chan = get_user(@params.user)?.get_channel(@params.channel)
+    if chan and @query.message?
+        chan.messages.push @query.message
+    @send chan || 404
+
+  @get "/:user": ->
+    @send get_user(@params.user) || 404
+
+
+      </code></pre>
+    </div>
+    <div>
+      <small>Powered by node.js / zappajs</small>
+    </div>
+</section>
+<section>
+    <h2>Hackathon 24h/48h process<br>
+        <br>
+    </h2>
+        <div>
+    Goal : 1st Online web service version in 12h to 24h<br/><br/>
+    Dev "stable" iteration every 2 hours<br/><br/>
+    Merge/Deploy iteration every 4 hours past 12h<br/>
+    </div>
+</section>
+<section>
+    <h2>Use existing things<br/> to build non existing ones<br></h2>
+    <div>
+        Do not reinvent the wheel<br/><br/>
+        <ul>
+            <li>Authentification using facebook / twitter / google<br/><br/></li>
+            <li>Data is everywhere build mashups<br/><br/></li>
+            <li>Be resilient use many data sources<br/><br/></li>
+        </ul>
+    
+    </div>
+</section>
+
+
+
+
+			</div>
+
+		</div>
+
+		<script src="reveal.js/lib/js/head.min.js"></script>
+		<script src="reveal.js/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'highlight.pack.js', async: true, callback: function() { 
+						console.log(hljs);
+						hljs.initHighlightingOnLoad(); 
+					} },
+					{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

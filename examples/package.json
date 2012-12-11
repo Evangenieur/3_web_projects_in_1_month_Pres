@@ -1,0 +1,17 @@
+{
+  "name": "NanoAPISamples",
+  "version": "0.0.0-1",
+  "description": "Node.js / ZappaJS Api Sample",
+  "main": "nano_api.coffee",
+  "scripts": {
+    "start": "coffee nano_api.coffee"
+  },
+  "dependencies": {
+    "coffee-script": "1.4.0",
+    "zappajs": "0.4.12"
+  },
+  "engines": {
+    "node": "0.8.x"
+  },
+  "subdomain": "nano-api"
+}
