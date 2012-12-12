@@ -16,7 +16,8 @@ open your web browser and go test those URLs:
   * Push Another message ... [http://localhost:3000/evangenieur/my_channel/?message=new+message2](http://localhost:3000/evangenieur/my_channel/?message=new+message2)
 
 ## Deployment
-Get an account on [nodejitsu](http://jit.su)
-Modify subdomain in `package.json`
-Deploy to nodejitsu cloud `jitsu deploy`
-It's online on http://your_subdomain.jit.su/
+
+* Get an account on [nodejitsu](http://jit.su)
+* Modify subdomain in `package.json`
+* Deploy to nodejitsu cloud `jitsu deploy`
+* It's online on http://__*your_subdomain*.jit.su__/
