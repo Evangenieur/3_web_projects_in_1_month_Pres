@@ -24,12 +24,12 @@ require("zappajs") ->
     chan = get_user(@params.user)?.get_channel(@params.channel)
     if chan and @query.message?
         chan.messages.push @query.message
-    @send chan || 404
+    @render "index", data: chan
+    #@send chan || 404
 
   @get "/:user": ->
     @render "index", data: get_user(@params.user)
-    return 
-    @send get_user(@params.user) || 404
+    #@send get_user(@params.user) || 404
 
   @view "index": ->
     inspect = (data) ->
