@@ -18,6 +18,6 @@ open your web browser and go test those URLs:
 ## Deployment
 
 * Get an account on [nodejitsu](http://jit.su)
-* Modify subdomain in `package.json`
+* Modify `subdomain` properties in `package.json`
 * Deploy to nodejitsu cloud `jitsu deploy`
-* It's online on http://__*your_subdomain*.jit.su__/
+* It's online on http://your_subdomain.jit.su/
