@@ -11,6 +11,6 @@ Experience feedback from 3 projects built from 10 November 2012 to 2 December 20
      > [Tvod.me](http://tvod.me) Social Video Curation to build Social TV Channels
 
  * Hackathon 24h [AngelHach](http://angelhack.com/) Paris 
-     > [hVid.io](http://hvid.io) Follow real time Video passing through social networks (4th place) [Source Code on GitHub](https://github.com/Evangenieur/hvid.io)
+     > [hVid.io](http://hvid.io) Search real time Video passing through social networks (4th place) [Source Code on GitHub](https://github.com/Evangenieur/hvid.io)
 
 prototyped using [rvl.io](http://rvl.io) finished using vim and [reveal.js](http://lab.hakim.se/reveal-js/)
